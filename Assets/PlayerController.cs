@@ -6,6 +6,13 @@ public class PlayerController : MonoBehaviour
 {
     public float poleStop = 90;
 
+    public float horiztonalSpeed = 1;
+    public float verticalSpeed = 1;
+
+    public int player;
+
+    public AnimationCurve horizontalSpeedCurve = new AnimationCurve();
+
     private void Update()
     {
         Move();
@@ -15,13 +22,21 @@ public class PlayerController : MonoBehaviour
     {
         Vector3 rotation = transform.rotation.eulerAngles;
 
-        Vector2 input = new Vector3(Input.GetAxis("Vertical"), -Input.GetAxis("Horizontal"));
+        Vector2 input = new Vector3(-Input.GetAxis("Horizontal" + player), Input.GetAxis("Vertical" + player));
 
-        input.y = input.y * (Mathf.Abs(Mathf.Sin(rotation.x / 360)) + 1);
+        input.Normalize();
 
-        Debug.Log(input.y);
+        input.x *= horiztonalSpeed;
 
-        rotation += new Vector3(input.x, input.y);
+        input.y *= verticalSpeed;
+
+        //input.y = input.y * Mathf.Abs((Mathf.Sin(rotation.x * Mathf.PI / 180) + 1));
+
+        input.x = input.x * horizontalSpeedCurve.Evaluate(rotation.x);
+
+        Debug.Log(input.x);
+
+        rotation += new Vector3(input.y, input.x);
         rotation.z = 0f;
 
         //rotation.x = Mathf.Clamp(rotation.x, -80, 80);

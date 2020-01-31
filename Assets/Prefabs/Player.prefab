@@ -450,7 +450,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   poleStop: 80
-  moveSpeed: 0.1
+  moveSpeed: 20
   player: 0
   horizontalSpeedCurve:
     serializedVersion: 2

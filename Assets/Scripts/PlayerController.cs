@@ -27,6 +27,8 @@ public class PlayerController : MonoBehaviour
 
         input *= moveSpeed;
 
+        input *= Time.deltaTime;
+
         //input.y = input.y * Mathf.Abs((Mathf.Sin(rotation.x * Mathf.PI / 180) + 1));
 
         input.x = input.x * horizontalSpeedCurve.Evaluate(rotation.x);

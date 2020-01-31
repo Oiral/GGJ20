@@ -6,8 +6,7 @@ public class PlayerController : MonoBehaviour
 {
     public float poleStop = 90;
 
-    public float horiztonalSpeed = 1;
-    public float verticalSpeed = 1;
+    public float moveSpeed = 0.3f;
 
     public int player;
 
@@ -26,9 +25,7 @@ public class PlayerController : MonoBehaviour
 
         input.Normalize();
 
-        input.x *= horiztonalSpeed;
-
-        input.y *= verticalSpeed;
+        input *= moveSpeed;
 
         //input.y = input.y * Mathf.Abs((Mathf.Sin(rotation.x * Mathf.PI / 180) + 1));
 

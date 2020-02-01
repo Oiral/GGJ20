@@ -558,7 +558,8 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 0
     m_RotationOrder: 4
-  outerPlayer: {fileID: 1738210243898912049}
+  pickUpLocation: {fileID: 1437510168}
+  carrying: 0
 --- !u!1 &1738210243898912049
 GameObject:
   m_ObjectHideFlags: 0

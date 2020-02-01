@@ -12,9 +12,9 @@ public class PlayerController : MonoBehaviour
 
     public AnimationCurve horizontalSpeedCurve = new AnimationCurve();
 
-    public GameObject outerPlayer;
+    public GameObject pickUpLocation;
 
-    public bool carrying = false;
+    public GameObject carrying = null;
 
     private void Update()
     {
@@ -26,28 +26,34 @@ public class PlayerController : MonoBehaviour
             //Raycast down
             RaycastHit hit;
             // Does the ray intersect any objects excluding the player layer
-            if (Physics.Raycast(outerPlayer.transform.position, outerPlayer.transform.TransformDirection(Vector3.up), out hit, 1))
+            if (Physics.Raycast(pickUpLocation.transform.position, pickUpLocation.transform.TransformDirection(Vector3.up), out hit, 1))
             {
-                Debug.DrawLine(outerPlayer.transform.position, hit.point, Color.green, 10f);
-                Debug.DrawRay(outerPlayer.transform.position, outerPlayer.transform.TransformDirection(Vector3.up), Color.green, 1);
-                Debug.Log(hit.transform.gameObject,hit.transform.gameObject);
+                Debug.DrawLine(pickUpLocation.transform.position, hit.point, Color.green, 10f);
+                Debug.DrawRay(pickUpLocation.transform.position, pickUpLocation.transform.TransformDirection(Vector3.up), Color.green, 1);
+                Debug.Log(hit.transform.gameObject,gameObject);
 
-                if (carrying)
+                if (carrying != null)
                 {
                     //If we are carry
                     //Check if we hit a need to be repaired panel
                     if (hit.transform.GetComponent<Panel>() != null)
                     {
-                        GameManager.instance.RepairPanel(hit.transform.gameObject);
-                        carrying = false;
+                        if (hit.transform.GetComponent<Panel>().destroyed)
+                        {
+                            GameManager.instance.RepairPanel(hit.transform.gameObject);
+                            carrying.GetComponent<PickUpPanel>().Place();
+                            carrying = null;
+                        }
                     }
                 }
                 else
                 {
                     //Check if we can pick something up
-                    if (hit.transform.GetComponent<PickUpPanel>())
+                    if (hit.transform.GetComponentInParent<PickUpPanel>())
                     {
-                        carrying = true;
+                        //Pick up the panel
+                        carrying = hit.transform.GetComponentInParent<PickUpPanel>().gameObject;
+                        carrying.GetComponent<PickUpPanel>().PickUp(pickUpLocation);
                     }
                 }
 

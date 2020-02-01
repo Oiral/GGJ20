@@ -6,7 +6,7 @@ public class GameManager : MonoBehaviour
 {
     public List<GameObject> attachedPanels;
     int maxPanels;
-    public int losePanels;
+    public int losePanels = 50;
 
     List<GameObject> destroyedPanels = new List<GameObject>();
 
@@ -60,7 +60,7 @@ public class GameManager : MonoBehaviour
         }
         if (Input.GetMouseButtonDown(0))
         {
-            RepairPanel(destroyedPanels[0]);
+            //RepairPanel(destroyedPanels[0]);
         }
     }
     

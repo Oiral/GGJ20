@@ -16,6 +16,8 @@ public class PlayerController : MonoBehaviour
 
     public GameObject carrying = null;
 
+    public Animator animator;
+
     private void Update()
     {
         Move();
@@ -66,6 +68,20 @@ public class PlayerController : MonoBehaviour
         Vector3 rotation = transform.rotation.eulerAngles;
 
         Vector2 input = new Vector3(-Input.GetAxis("Horizontal" + player), Input.GetAxis("Vertical" + player));
+
+        if (input.magnitude < .2f)
+        {
+
+            animator.SetBool("Walking", false);
+            return;
+        }
+
+        if (animator.GetBool("Walking") == false)
+        {
+            animator.SetBool("Walking", true);
+            animator.SetTrigger("Start Walking");
+        }
+        
 
         input.Normalize();
 

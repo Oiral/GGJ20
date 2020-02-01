@@ -23,6 +23,10 @@ PrefabInstance:
       propertyPath: m_NormalizedViewPortRect.x
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 1437510169, guid: e0dfba473235a9b4d99f411aec809910, type: 3}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 1738210242673840941, guid: e0dfba473235a9b4d99f411aec809910,
         type: 3}
       propertyPath: m_Name
@@ -111,7 +115,7 @@ PrefabInstance:
     - target: {fileID: -5716681864270162303, guid: 8a9a1abaed2ee774eab735fd4df64a6d,
         type: 3}
       propertyPath: m_Animations.Array.size
-      value: 2
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: -5716681864270162303, guid: 8a9a1abaed2ee774eab735fd4df64a6d,
         type: 3}
@@ -123,13 +127,13 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Animations.Array.data[2]
       value: 
-      objectReference: {fileID: -3760463003778554282, guid: 8a9a1abaed2ee774eab735fd4df64a6d,
+      objectReference: {fileID: 3138671392221048649, guid: 8a9a1abaed2ee774eab735fd4df64a6d,
         type: 3}
     - target: {fileID: -5716681864270162303, guid: 8a9a1abaed2ee774eab735fd4df64a6d,
         type: 3}
       propertyPath: m_Animations.Array.data[3]
       value: 
-      objectReference: {fileID: -3760463003778554282, guid: 8a9a1abaed2ee774eab735fd4df64a6d,
+      objectReference: {fileID: 4325681283171940198, guid: 8a9a1abaed2ee774eab735fd4df64a6d,
         type: 3}
     - target: {fileID: -5716681864270162303, guid: 8a9a1abaed2ee774eab735fd4df64a6d,
         type: 3}

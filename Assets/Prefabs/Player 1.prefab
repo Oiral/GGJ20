@@ -1,5 +1,24 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!95 &681070366
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1659953062751343500}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: a20b60af754491740b0340fbc7ca4abb, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1001 &2399480511693401756
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -19,11 +38,20 @@ PrefabInstance:
       propertyPath: m_Parameters.colorGradient.key0.b
       value: 0.87843144
       objectReference: {fileID: 0}
+    - target: {fileID: 1437510169, guid: e0dfba473235a9b4d99f411aec809910, type: 3}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 1738210242673840941, guid: e0dfba473235a9b4d99f411aec809910,
         type: 3}
       propertyPath: m_Name
       value: Player 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1738210242673840946, guid: e0dfba473235a9b4d99f411aec809910,
+        type: 3}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 681070366}
     - target: {fileID: 1738210242673840947, guid: e0dfba473235a9b4d99f411aec809910,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -203,3 +231,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7b82797b784045842990f4a75dde9f0f, type: 3}
+--- !u!1 &1659953062751343500 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -927199367670048503, guid: 7b82797b784045842990f4a75dde9f0f,
+    type: 3}
+  m_PrefabInstance: {fileID: 7217224640330123909}
+  m_PrefabAsset: {fileID: 0}

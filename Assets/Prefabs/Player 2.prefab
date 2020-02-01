@@ -19,10 +19,19 @@ PrefabInstance:
       propertyPath: m_Parameters.colorGradient.key0.b
       value: 0.2392157
       objectReference: {fileID: 0}
+    - target: {fileID: 963194227, guid: e0dfba473235a9b4d99f411aec809910, type: 3}
+      propertyPath: m_NormalizedViewPortRect.x
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 1738210242673840941, guid: e0dfba473235a9b4d99f411aec809910,
         type: 3}
       propertyPath: m_Name
       value: Player 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1738210242673840946, guid: e0dfba473235a9b4d99f411aec809910,
+        type: 3}
+      propertyPath: player
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1738210242673840947, guid: e0dfba473235a9b4d99f411aec809910,
         type: 3}

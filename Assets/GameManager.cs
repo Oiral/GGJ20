@@ -12,6 +12,8 @@ public class GameManager : MonoBehaviour
 
     public static GameManager instance;
 
+    public float gameTime;
+
     private void Awake()
     {
         if (instance == null)
@@ -25,6 +27,8 @@ public class GameManager : MonoBehaviour
 
 
         maxPanels = attachedPanels.Count;
+
+        StartCoroutine(TimeDestroy());
     }
 
     public void DestroyPanel()
@@ -50,7 +54,7 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Q))
         {
             DestroyPanel();
         }
@@ -58,5 +62,17 @@ public class GameManager : MonoBehaviour
         {
             RepairPanel(destroyedPanels[0]);
         }
+    }
+    
+    IEnumerator TimeDestroy()
+    {
+        while (attachedPanels.Count > losePanels)
+        {
+            Debug.Log("Panels");
+            yield return new WaitForSeconds(5f - (5f * (attachedPanels.Count / (maxPanels / (Time.timeSinceLevelLoad / 50)))));
+            DestroyPanel();
+        }
+        Debug.Log("You lose");
+        
     }
 }

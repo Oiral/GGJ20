@@ -531,7 +531,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 691805e21090e1a46af478456bc8cf33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  poleStop: 80
+  poleStop: 85
   moveSpeed: 20
   player: 0
   horizontalSpeedCurve:
@@ -559,7 +559,37 @@ MonoBehaviour:
     m_PostInfinity: 0
     m_RotationOrder: 4
   pickUpLocation: {fileID: 1437510168}
-  carrying: 0
+  externalPlayer: {fileID: 1738210243898912054}
+  carrying: {fileID: 0}
+  animator: {fileID: 0}
+  alive: 1
+  deathScaleTime: 2
+  deathMinScale: 0.7
+  respawnTime: 2
+  deathFall:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0.7637844
+      outSlope: 0.7637844
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.056603774
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 2.531188
+      outSlope: 2.531188
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.03638816
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &1738210243898912049
 GameObject:
   m_ObjectHideFlags: 0

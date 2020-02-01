@@ -14,9 +14,23 @@ public class PlayerController : MonoBehaviour
 
     public GameObject pickUpLocation;
 
+    public Transform externalPlayer;
+
     public GameObject carrying = null;
 
     public Animator animator;
+
+
+    [Header("Death")]
+    public bool alive = true;
+
+    public float deathScaleTime = 0.5f;
+
+    public float deathMinScale = 0.5f;
+
+    public float respawnTime = 1f;
+
+    public AnimationCurve deathFall;
 
     private void Update()
     {
@@ -30,6 +44,9 @@ public class PlayerController : MonoBehaviour
 
     void Move()
     {
+        if (alive == false)
+            return;
+
         Vector3 rotation = transform.rotation.eulerAngles;
 
         Vector2 input = new Vector3(-Input.GetAxis("Horizontal" + player), Input.GetAxis("Vertical" + player));
@@ -80,6 +97,9 @@ public class PlayerController : MonoBehaviour
 
     void Interaction()
     {
+        if (alive == false)
+            return;
+
         if (Input.GetButtonDown("Interact" + player))
         {
             Debug.Log("Repair test");
@@ -123,8 +143,66 @@ public class PlayerController : MonoBehaviour
 
     void CheckForFall()
     {
-        //Let do a box cast down
+        if (alive == false)
+            return;
 
+        //Raycast down
+        RaycastHit hit;
+        // Does the ray intersect any objects excluding the player layer
+        if (Physics.Raycast(externalPlayer.position, externalPlayer.TransformDirection(Vector3.up), out hit, 1))
+        {
+            Debug.DrawLine(externalPlayer.position, hit.point, Color.green, 10f);
+            Debug.Log(hit.transform.gameObject, gameObject);
+            if (hit.transform.gameObject.GetComponent<Panel>() != null && hit.transform.gameObject.GetComponent<Panel>().destroyed)
+            {
+                //Fall
+                Debug.Log("Player died");
+                StartCoroutine(Fall());
+            }
+        }
+    }
+
+    IEnumerator Fall()
+    {
+        alive = false;
+
+        if (carrying != null)
+        {
+            carrying.GetComponent<PickUpPanel>().Place();
+            carrying = null;
+        }
+
+        yield return new WaitForSeconds(0);
+        //Fall down
+        float elapsedTime = 0;
+        while (elapsedTime < deathScaleTime)
+        {
+            transform.localScale = Vector3.Lerp(Vector3.one, Vector3.one * deathMinScale, deathFall.Evaluate(elapsedTime / deathScaleTime));
+            elapsedTime += Time.deltaTime;
+            yield return 0;
+        }
+
+        transform.localScale = Vector3.one * deathMinScale;
+
+        yield return new WaitForSeconds(respawnTime);
+
+        transform.localScale = Vector3.one;
+
+        float temp;
+
+        if (player == 0)
+        {
+            temp = -90;
+        }
+        else
+        {
+            temp = 90;
+        }
+
+        transform.rotation = Quaternion.Euler(temp, 0, 0);
+
+        //Set rotation
+        alive = true;
     }
 
 }

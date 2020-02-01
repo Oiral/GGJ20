@@ -6,6 +6,8 @@ public class Panel : MonoBehaviour
 {
     public Node attachedNode;
 
+    public PanelSpawner attachedSpawner;
+
     public void Explode()
     {
         //Once it explodes
@@ -22,5 +24,20 @@ public class Panel : MonoBehaviour
         {
             Explode();
         }
+    }
+
+    public void PickUp()
+    {
+        //If we are attached to something
+        if (attachedNode != null)
+            return;
+
+        //If we are attached to the spawner
+        if (attachedSpawner != null)
+            attachedSpawner.CollectPanel();
+
+        //If we can pick this up
+        //Maybe parent to the thingy
+
     }
 }

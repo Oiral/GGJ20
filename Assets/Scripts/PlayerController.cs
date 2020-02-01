@@ -14,6 +14,8 @@ public class PlayerController : MonoBehaviour
 
     public GameObject outerPlayer;
 
+    public bool carrying = false;
+
     private void Update()
     {
         Move();
@@ -29,9 +31,24 @@ public class PlayerController : MonoBehaviour
                 Debug.DrawLine(outerPlayer.transform.position, hit.point, Color.green, 10f);
                 Debug.DrawRay(outerPlayer.transform.position, outerPlayer.transform.TransformDirection(Vector3.up), Color.green, 1);
                 Debug.Log(hit.transform.gameObject,hit.transform.gameObject);
-                if (hit.transform.GetComponent<Panel>() != null)
+
+                if (carrying)
                 {
-                    GameManager.instance.RepairPanel(hit.transform.gameObject);
+                    //If we are carry
+                    //Check if we hit a need to be repaired panel
+                    if (hit.transform.GetComponent<Panel>() != null)
+                    {
+                        GameManager.instance.RepairPanel(hit.transform.gameObject);
+                        carrying = false;
+                    }
+                }
+                else
+                {
+                    //Check if we can pick something up
+                    if (hit.transform.GetComponent<PickUpPanel>())
+                    {
+                        carrying = true;
+                    }
                 }
 
             }

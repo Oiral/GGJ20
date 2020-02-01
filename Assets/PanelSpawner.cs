@@ -28,8 +28,7 @@ public class PanelSpawner : MonoBehaviour
         GameObject spawnedPanel = Instantiate(panelPrefab, transform.position, transform.rotation, null);
         if (GetComponent<Panel>() != null)
         {
-            spawnedPanel.GetComponent<Panel>().attachedNode = null;
-            spawnedPanel.GetComponent<Panel>().attachedSpawner = this;
+
         }
     }
 

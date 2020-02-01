@@ -12,9 +12,30 @@ public class PlayerController : MonoBehaviour
 
     public AnimationCurve horizontalSpeedCurve = new AnimationCurve();
 
+    public GameObject outerPlayer;
+
     private void Update()
     {
         Move();
+
+        if (Input.GetButtonDown("Interact" + player))
+        {
+            Debug.Log("Repair test");
+            //Raycast down
+            RaycastHit hit;
+            // Does the ray intersect any objects excluding the player layer
+            if (Physics.Raycast(outerPlayer.transform.position, outerPlayer.transform.TransformDirection(Vector3.up), out hit, 1))
+            {
+                Debug.DrawLine(outerPlayer.transform.position, hit.point, Color.green, 10f);
+                Debug.DrawRay(outerPlayer.transform.position, outerPlayer.transform.TransformDirection(Vector3.up), Color.green, 1);
+                Debug.Log(hit.transform.gameObject,hit.transform.gameObject);
+                if (hit.transform.GetComponent<Panel>() != null)
+                {
+                    GameManager.instance.RepairPanel(hit.transform.gameObject);
+                }
+
+            }
+        }
     }
 
     void Move()
@@ -33,7 +54,7 @@ public class PlayerController : MonoBehaviour
 
         input.x = input.x * horizontalSpeedCurve.Evaluate(rotation.x);
 
-        Debug.Log(input.x);
+        //Debug.Log(input.x);
 
         rotation += new Vector3(input.y, input.x);
         rotation.z = 0f;

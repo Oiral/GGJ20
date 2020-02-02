@@ -7,13 +7,21 @@ public class Panel : MonoBehaviour
 {
     public bool destroyed = false;
 
-    [HideInInspector]
+    //[HideInInspector]
     public VisualEffect destroyParticle;
+
+    public VisualEffectAsset effect;
 
     private void Start()
     {
         destroyParticle = GetComponentInChildren<VisualEffect>();
 
         destroyParticle.Stop();
+    }
+
+    public void DestroyPanel()
+    {
+        destroyParticle.visualEffectAsset = effect;
+        destroyParticle.Play();
     }
 }

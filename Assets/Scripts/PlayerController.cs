@@ -151,8 +151,8 @@ public class PlayerController : MonoBehaviour
         // Does the ray intersect any objects excluding the player layer
         if (Physics.Raycast(externalPlayer.position, externalPlayer.TransformDirection(Vector3.up), out hit, 1))
         {
-            Debug.DrawLine(externalPlayer.position, hit.point, Color.green, 10f);
-            Debug.Log(hit.transform.gameObject, gameObject);
+            Debug.DrawLine(externalPlayer.position, hit.point, Color.green, 3f);
+            //Debug.Log(hit.transform.gameObject, gameObject);
             if (hit.transform.gameObject.GetComponent<Panel>() != null && hit.transform.gameObject.GetComponent<Panel>().destroyed)
             {
                 //Fall

@@ -119,7 +119,13 @@ public class GameManager : MonoBehaviour
             yield return 0;
         }
 
-        yield return new WaitForSeconds(10f);
+        for (int i = 0; i < 10; i++)
+        {
+            yield return new WaitForSeconds(0.5f);
+            DestroyPanel();
+        }
+
+        yield return new WaitForSeconds(5);
 
         SceneManager.LoadScene(0);
 

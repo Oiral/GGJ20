@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering.PostProcessing;
 
 public class GameManager : MonoBehaviour
 {
@@ -13,6 +14,11 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
 
     public float gameTime;
+
+    public GameObject player1;
+    public GameObject player2;
+
+    public GameObject endScreenPrefab;
 
     private void Awake()
     {
@@ -73,6 +79,23 @@ public class GameManager : MonoBehaviour
             DestroyPanel();
         }
         Debug.Log("You lose");
+        StartCoroutine(GameOver());
         
     }
+
+    IEnumerator GameOver()
+    {
+        //Disable the players
+        player1.GetComponent<PlayerController>().alive = false;
+        player2.GetComponent<PlayerController>().alive = false;
+        
+        //fade all cameras to black
+
+        yield return new WaitForSeconds(2f);
+        //Spawn in the game over screen
+        Instantiate(endScreenPrefab);
+
+    }
+
+
 }

@@ -37,9 +37,8 @@ public class GameManager : MonoBehaviour
         GameObject panelToDestroy = attachedPanels[Random.Range(0, (int)attachedPanels.Count)];
         attachedPanels.Remove(panelToDestroy);
         destroyedPanels.Add(panelToDestroy);
-        panelToDestroy.GetComponent<MeshRenderer>().enabled = false;
-        panelToDestroy.GetComponent<Panel>().destroyed = true;
-        panelToDestroy.GetComponent<Panel>().destroyParticle.Play();
+        panelToDestroy.GetComponent<Panel>().DestroyPanel();
+        //panelToDestroy.GetComponent<Panel>().destroyParticle.Play();
     }
 
     public void RepairPanel(GameObject panel)

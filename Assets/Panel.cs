@@ -27,6 +27,7 @@ public class Panel : MonoBehaviour
     {
         destroyParticle.visualEffectAsset = effect;
         destroyParticle.Play();
+        GetComponent<AudioSource>().Play();
 
         yield return new WaitForSeconds(3.2f);
         GetComponent<MeshRenderer>().enabled = false;

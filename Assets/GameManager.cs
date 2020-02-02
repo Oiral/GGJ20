@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering.PostProcessing;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -19,6 +20,8 @@ public class GameManager : MonoBehaviour
     public GameObject player2;
 
     public GameObject endScreenPrefab;
+
+    public PostProcessVolume postProcessing;
 
     private void Awake()
     {
@@ -88,12 +91,37 @@ public class GameManager : MonoBehaviour
         //Disable the players
         player1.GetComponent<PlayerController>().alive = false;
         player2.GetComponent<PlayerController>().alive = false;
-        
-        //fade all cameras to black
 
-        yield return new WaitForSeconds(2f);
+        Vignette vignetteLayer;
+
+        postProcessing.profile.TryGetSettings(out vignetteLayer);
+
+        float startingIntensity = vignetteLayer.intensity;
+
+        //fade all cameras to black
+        float elapsedTime = 0;
+        float maxTime = 1f;
+
+        while (elapsedTime < 1)
+        {
+            vignetteLayer.intensity.value = Mathf.Lerp(startingIntensity, 2 , (elapsedTime / maxTime));
+            elapsedTime += Time.deltaTime;
+            yield return 0;
+        }
+        
         //Spawn in the game over screen
         Instantiate(endScreenPrefab);
+        
+        while (elapsedTime > 0)
+        {
+            vignetteLayer.intensity.value = Mathf.Lerp(startingIntensity, 2, (elapsedTime / maxTime));
+            elapsedTime -= Time.deltaTime;
+            yield return 0;
+        }
+
+        yield return new WaitForSeconds(10f);
+
+        SceneManager.LoadScene(0);
 
     }
 

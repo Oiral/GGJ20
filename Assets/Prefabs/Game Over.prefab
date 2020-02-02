@@ -98,7 +98,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 4093338038008139554}
-  speed: 7
+  speed: 8
   speedCurve:
     serializedVersion: 2
     m_Curve:
@@ -111,6 +111,15 @@ MonoBehaviour:
       weightedMode: 0
       inWeight: 0
       outWeight: 0
+    - serializedVersion: 3
+      time: 0.24697345
+      value: 0.026655033
+      inSlope: 0.14826189
+      outSlope: 0.14826189
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.0908272
     - serializedVersion: 3
       time: 1
       value: 1

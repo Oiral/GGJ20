@@ -78,8 +78,16 @@ public class GameManager : MonoBehaviour
         while (attachedPanels.Count > losePanels)
         {
             Debug.Log("Panels");
-            yield return new WaitForSeconds(5f - (5f * (attachedPanels.Count / (maxPanels / (Time.timeSinceLevelLoad / 50)))));
-            DestroyPanel();
+            if (Time.timeSinceLevelLoad > 1)
+            {
+                DestroyPanel();
+                // yield return new WaitForSeconds((Mathf.Pow(((Time.timeSinceLevelLoad + 5) / 90) * 0.9f, -1) * 5));
+                yield return new WaitForSeconds(Mathf.Max(10 - (Time.timeSinceLevelLoad / 8), 0.5f));
+            }
+            else
+            {
+                yield return 0;
+            }
         }
         Debug.Log("You lose");
         StartCoroutine(GameOver());
@@ -121,7 +129,12 @@ public class GameManager : MonoBehaviour
 
         for (int i = 0; i < 10; i++)
         {
-            yield return new WaitForSeconds(0.5f);
+            DestroyPanel();
+        }
+
+        for (int i = 0; i < 20; i++)
+        {
+            yield return new WaitForSeconds(0.25f);
             DestroyPanel();
         }
 

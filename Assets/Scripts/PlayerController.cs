@@ -20,6 +20,9 @@ public class PlayerController : MonoBehaviour
 
     public Animator animator;
 
+    public AudioSource dropSound;
+    public AudioSource pickupSound;
+
 
     [Header("Death")]
     public bool alive = true;
@@ -123,6 +126,7 @@ public class PlayerController : MonoBehaviour
                             GameManager.instance.RepairPanel(hit.transform.gameObject);
                             carrying.GetComponent<PickUpPanel>().Place();
                             carrying = null;
+                            dropSound.Play();
                         }
                     }
                 }
@@ -134,6 +138,7 @@ public class PlayerController : MonoBehaviour
                         //Pick up the panel
                         carrying = hit.transform.GetComponentInParent<PickUpPanel>().gameObject;
                         carrying.GetComponent<PickUpPanel>().PickUp(pickUpLocation);
+                        pickupSound.Play();
                     }
                 }
 

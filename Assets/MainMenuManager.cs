@@ -10,6 +10,11 @@ public class MainMenuManager : MonoBehaviour
 
     private void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Application.Quit();
+        }
+
         if (timeElapsed > 0.5f)
         {
 
